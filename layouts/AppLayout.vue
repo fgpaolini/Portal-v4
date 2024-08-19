@@ -4,6 +4,7 @@ import { computed, ref, watch } from 'vue';
 import AppFooter from './AppFooter.vue';
 import AppSidebar from './AppSidebar.vue';
 import AppTopbar from './AppTopbar.vue';
+import AppConfigurator from './AppConfigurator.vue';
 
 const { layoutConfig, layoutState, isSidebarActive, resetMenu } = useLayout();
 
@@ -54,16 +55,22 @@ function isOutsideClicked(event) {
 </script>
 
 <template>
+    <DynamicDialog/>
     <div class="layout-wrapper" :class="containerClass">
-        <app-topbar></app-topbar>
-        <app-sidebar></app-sidebar>
+        <NuxtLoadingIndicator/>
+        <app-topbar>
+        </app-topbar>
+        <div class="layout-sidebar">
+            <app-sidebar></app-sidebar>
+        </div>
         <div class="layout-main-container">
             <div class="layout-main">
                 <NuxtPage />
             </div>
             <app-footer></app-footer>
         </div>
-        <div class="layout-mask animate-fadein"></div>
-    </div>
-    <Toast />
+        <AppConfigurator></AppConfigurator>
+        <div class="layout-mask"></div>
+    </div>  
+    <Toast/>
 </template>

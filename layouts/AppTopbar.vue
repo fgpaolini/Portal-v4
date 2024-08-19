@@ -7,19 +7,23 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
 
 <template>
     <div class="layout-topbar">
-        <div class="layout-topbar-logo-container">
-            <button class="layout-menu-button layout-topbar-action" @click="onMenuToggle">
-                <i class="pi pi-bars"></i>
-            </button>
-            <router-link to="/" class="layout-topbar-logo">
-                <img src="../assets/img/logo_lidera.png" alt="logo"/>
-                <span class="ml-2">Portal</span>
-            </router-link>
-        </div>
+        <router-link to="/" class="layout-topbar-logo">
+        <img src="../assets/img/logo_lidera.png" alt="logo"/>
+        <span class="ml-2">Portal</span>
+        </router-link>
 
-        <div class="layout-topbar-actions">
+        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+        <i class="pi pi-bars"></i>
+        </button>
+
+        <button class="p-link layout-topbar-menu-button layout-topbar-button" @click="onTopBarMenuButton()">
+        <i class="pi pi-ellipsis-v"></i>
+        </button>
+    <slot></slot>
+
+        <div class="layout-topbar-menu">
             <div class="layout-config-menu">
-                <button type="button" class="layout-topbar-action" @click="toggleDarkMode">
+                <button type="button" class="layout-topbar-button" @click="toggleDarkMode">
                     <i :class="['pi', { 'pi-moon': isDarkTheme, 'pi-sun': !isDarkTheme }]"></i>
                 </button>
                 <div class="relative">
@@ -35,7 +39,7 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
             </div>
 
             <button
-                class="layout-topbar-menu-button layout-topbar-action"
+                class="layout-topbar-menu-button layout-topbar-button"
                 v-styleclass="{ selector: '@next', enterFromClass: 'hidden', enterActiveClass: 'animate-scalein', leaveToClass: 'hidden', leaveActiveClass: 'animate-fadeout', hideOnOutsideClick: true }"
             >
                 <i class="pi pi-ellipsis-v"></i>
@@ -43,15 +47,15 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
 
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
-                    <button type="button" class="layout-topbar-action">
+                    <button type="button" class="layout-topbar-button">
                         <i class="pi pi-calendar"></i>
                         <span>Calendar</span>
                     </button>
-                    <button type="button" class="layout-topbar-action">
+                    <button type="button" class="layout-topbar-button">
                         <i class="pi pi-inbox"></i>
                         <span>Messages</span>
                     </button>
-                    <button type="button" class="layout-topbar-action">
+                    <button type="button" class="layout-topbar-button">
                         <i class="pi pi-user"></i>
                         <span>Profile</span>
                     </button>

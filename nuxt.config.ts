@@ -21,7 +21,23 @@ export default defineNuxtConfig({
     },
     usePrimeVue: true
   },
+  
+  app: {
+    head: {
+      title: "Portal",
+      link: [
+        {
+          id: "theme-css",
+          rel: "stylesheet",
+          type: "text/css",
+          href: "/themes/aura-light-green/theme.css",
+        },
+      ],
+    },
+  },
   css: [
-    "@/assets/styles.scss",
+    "primeicons/primeicons.css",
+    "primeflex/primeflex.scss",
+    "@/assets/layout/styles.scss",
   ],
 })
