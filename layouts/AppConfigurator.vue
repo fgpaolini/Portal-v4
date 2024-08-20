@@ -197,8 +197,11 @@ function onMenuModeChange() {
 </script>
 <template>
     <div
-        class="config-panel hidden absolute top-3 right-0 w-16rem p-4 bg-surface-0 dark:bg-surface-900 border-1 border-surface border-round origin-top shadow-2"
+        class="config-panel absolute mt-2 right-0 w-16rem p-4 border-1 surface-border border-round origin-top shadow-1"
     >
+<!-- class="config-panel hidden absolute top-3 right-0 w-16rem p-4 bg-surface-0 dark:bg-surface-900 border-1 border-surface border-round origin-top shadow-2"
+-->
+
         <div class="flex flex-column gap-4">
             <div>
                 <span class="text-sm text-muted-color font-semibold">Primary</span>
@@ -209,8 +212,9 @@ function onMenuModeChange() {
                         type="button"
                         :title="primaryColor.name"
                         @click="updateColors('primary', primaryColor)"
-                        :class="['border-none w-2rem h-2rem border-circle p-0 cursor-pointer outline-none outline-offset-1', { 'outline-primary': layoutConfig.primary === primaryColor.name }]"
-                        :style="{ backgroundColor: `${primaryColor.name === 'noir' ? 'var(--text-color)' : primaryColor.palette['500']}` }"
+                        :class="['border-none w-1rem h-1rem border-circle p-0 cursor-pointer  outline-offset-1', { 'outline-color': layoutConfig.primary === primaryColor.name }]"
+                        :style="{ backgroundColor: `${primaryColor.name === 'noir' ? 'var(--text-color)' : primaryColor.palette['500']}`, outline: `1px solid ${layoutConfig.primary === primaryColor.name}`, outlineOffset: '1px' }"
+                        
                     ></button>
                 </div>
             </div>
@@ -224,7 +228,7 @@ function onMenuModeChange() {
                         :title="surface.name"
                         @click="updateColors('surface', surface)"
                         :class="[
-                            'border-none w-2rem h-2rem border-circle p-0 cursor-pointer outline-none outline-offset-1',
+                            'border-none w-1rem h-1rem border-circle p-0 cursor-pointer outline-none outline-offset-1',
                             { 'outline-primary': layoutConfig.surface ? layoutConfig.surface === surface.name : isDarkTheme ? surface.name === 'zinc' : surface.name === 'slate' }
                         ]"
                         :style="{ backgroundColor: `${surface.palette['500']}` }"

@@ -69,7 +69,7 @@ function isOutsideClicked(event) {
             </div>
             <app-footer></app-footer>
         </div>
-        <AppConfigurator></AppConfigurator>
+        <!-- <AppConfigurator></AppConfigurator> -->
         <div class="layout-mask"></div>
     </div>  
     <Toast/>

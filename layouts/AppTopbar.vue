@@ -7,21 +7,21 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
 
 <template>
     <div class="layout-topbar">
+        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
+        <i class="pi pi-bars"></i>
+        </button>
         <router-link to="/" class="layout-topbar-logo">
         <img src="../assets/img/logo_lidera.png" alt="logo"/>
         <span class="ml-2 text-color">Portal</span>
         </router-link>
 
-        <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
-        <i class="pi pi-bars"></i>
-        </button>
 
         <button class="p-link layout-topbar-menu-button layout-topbar-button" @click="onTopBarMenuButton()">
         <i class="pi pi-ellipsis-v"></i>
         </button>
     <slot></slot>
 
-        <div class="layout-topbar-menu">
+        <div class="layout-topbar-buttons">
             <div class="layout-topbar-menu">
                 <button type="button" class="p-link layout-topbar-button" @click="toggleDarkMode">
                     <i :class="['pi', { 'pi-moon': isDarkTheme, 'pi-sun': !isDarkTheme }]"></i>

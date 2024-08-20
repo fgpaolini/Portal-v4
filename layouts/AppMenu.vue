@@ -8,12 +8,12 @@ const model = ref([
         label: 'Home',
         items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }]
     },
-/*     {
+    {
         label: 'UI Components',
         items: [
-            { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/uikit/Formlayout' },
+            { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/uikit/FormLayout' },
             { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/uikit/InputDoc' },
-            { label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/uikit/ButtonDoc', class: 'rotated-icon' },
+            /* { label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/uikit/ButtonDoc', class: 'rotated-icon' },
             { label: 'Table', icon: 'pi pi-fw pi-table', to: '/uikit/TableDoc' },
             { label: 'List', icon: 'pi pi-fw pi-list', to: '/uikit/ListDoc' },
             { label: 'Tree', icon: 'pi pi-fw pi-share-alt', to: '/uikit/TreeDoc' },
@@ -25,9 +25,9 @@ const model = ref([
             { label: 'File', icon: 'pi pi-fw pi-file', to: '/uikit/FileDoc' },
             { label: 'Chart', icon: 'pi pi-fw pi-chart-bar', to: '/uikit/ChartDoc' },
             { label: 'Timeline', icon: 'pi pi-fw pi-calendar', to: '/uikit/TimelineDoc' },
-            { label: 'Misc', icon: 'pi pi-fw pi-circle', to: '/uikit/MiscDoc' }
+            { label: 'Misc', icon: 'pi pi-fw pi-circle', to: '/uikit/MiscDoc' } */
         ]
-    }, */
+    },
 /*     {
         label: 'Pages',
         icon: 'pi pi-fw pi-briefcase',
