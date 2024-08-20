@@ -24,7 +24,7 @@
             font-size: 0.857rem;
             text-transform: uppercase;
             font-weight: 700;
-            color: var(--text-color);
+            color: var(--surface-900);
             margin: 0.75rem 0;
         }
 
@@ -64,10 +64,8 @@
             color: var(--text-color);
             cursor: pointer;
             padding: 0.75rem 1rem;
-            border-radius: var(--content-border-radius);
-            transition:
-                background-color var(--element-transition-duration),
-                box-shadow var(--element-transition-duration);
+            border-radius: $borderRadius;
+            transition: background-color $transitionDuration, box-shadow $transitionDuration;
 
             .layout-menuitem-icon {
                 margin-right: 0.5rem;
@@ -76,7 +74,7 @@
             .layout-submenu-toggler {
                 font-size: 75%;
                 margin-left: auto;
-                transition: transform var(--element-transition-duration);
+                transition: transform $transitionDuration;
             }
 
             &.active-route {
@@ -95,7 +93,7 @@
 
         ul {
             overflow: hidden;
-            border-radius: var(--content-border-radius);
+            border-radius: $borderRadius;
 
             li {
                 a {

@@ -1,11 +1,15 @@
+@import './variables/_common';
+@import './variables/_light';
+@import './variables/_dark';
 @import './_variables';
 @import "./_mixins";
 @import "./_preloading";
 @import "./_main";
+@import "./_core";
 @import "./_topbar";
 @import "./_menu";
-@import "./_config";
-@import "./_content";
+/* @import "./_config"; */
+/* @import "./_content"; */
 @import "./_footer";
 @import "./_responsive";
 @import "./_utils";
