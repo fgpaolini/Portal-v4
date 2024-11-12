@@ -12,42 +12,42 @@ const dropdownItem = ref(null);
 
 <template>
     <Fluid>
-        <div class="flex flex-col md:flex-row gap-8">
-            <div class="md:w-1/2">
-                <div class="card flex flex-col gap-4">
+        <div class="flex flex-column md:flex-row ">
+            <div class="col-6">
+                <div class="card flex flex-column gap-4">
                     <div class="font-semibold text-xl">Vertical</div>
-                    <div class="flex flex-col gap-2">
+                    <div class="p-field flex flex-column gap-2">
                         <label for="name1">Name</label>
                         <InputText id="name1" type="text" />
                     </div>
-                    <div class="flex flex-col gap-2">
+                    <div class="flex flex-column gap-2">
                         <label for="email1">Email</label>
                         <InputText id="email1" type="text" />
                     </div>
-                    <div class="flex flex-col gap-2">
+                    <div class="flex flex-column gap-2">
                         <label for="age1">Age</label>
                         <InputText id="age1" type="text" />
                     </div>
                 </div>
 
-                <div class="card flex flex-col gap-4">
+                <div class="card flex flex-column gap-4">
                     <div class="font-semibold text-xl">Vertical Grid</div>
-                    <div class="flex flex-wrap gap-4">
-                        <div class="flex flex-col grow basis-0 gap-2">
+                    <div class="flex flex-wrap flex-coulmn gap-4">
+                        <div class="p-field flex flex-column gap-2">
                             <label for="name2">Name</label>
                             <InputText id="name2" type="text" />
                         </div>
-                        <div class="flex flex-col grow basis-0 gap-2">
+                        <div class="flex flex-column grow basis-0 gap-2">
                             <label for="email2">Email</label>
                             <InputText id="email2" type="text" />
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/2">
-                <div class="card flex flex-col gap-4">
+            <div class="col-6">
+                <div class="card flex flex-column gap-4">
                     <div class="font-semibold text-xl">Horizontal</div>
-                    <div class="grid grid-cols-12 gap-2">
+                    <div class="grid col-12 gap-2">
                         <label for="name3" class="flex items-center col-span-12 mb-2 md:col-span-2 md:mb-0">Name</label>
                         <div class="col-span-12 md:col-span-10">
                             <InputText id="name3" type="text" />
@@ -61,7 +61,7 @@ const dropdownItem = ref(null);
                     </div>
                 </div>
 
-                <div class="card flex flex-col gap-4">
+                <div class="card flex flex-column gap-4">
                     <div class="font-semibold text-xl">Inline</div>
                     <div class="flex flex-wrap items-start gap-4">
                         <div class="field">
@@ -75,7 +75,7 @@ const dropdownItem = ref(null);
                         <Button label="Submit" :fluid="false"></Button>
                     </div>
                 </div>
-                <div class="card flex flex-col gap-4">
+                <div class="card flex flex-column gap-4">
                     <div class="font-semibold text-xl">Help Text</div>
                     <div class="flex flex-wrap gap-2">
                         <label for="username">Username</label>
@@ -87,9 +87,9 @@ const dropdownItem = ref(null);
         </div>
 
         <div class="flex mt-8">
-            <div class="card flex flex-col gap-4 w-full">
+            <div class="card flex flex-column gap-4 w-full">
                 <div class="font-semibold text-xl">Advanced</div>
-                <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex flex-column md:flex-row gap-4">
                     <div class="flex flex-wrap gap-2 w-full">
                         <label for="firstname2">Firstname</label>
                         <InputText id="firstname2" type="text" />
@@ -105,7 +105,7 @@ const dropdownItem = ref(null);
                     <Textarea id="address" rows="4" />
                 </div>
 
-                <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex flex-column md:flex-row gap-4">
                     <div class="flex flex-wrap gap-2 w-full">
                         <label for="state">State</label>
                         <Select id="state" v-model="dropdownItem" :options="dropdownItems" optionLabel="name" placeholder="Select One" class="w-full"></Select>

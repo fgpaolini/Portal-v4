@@ -28,23 +28,23 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
                 </button>
                 <div class="relative">
                     <button
-                        v-styleclass="{ selector: '@next', enterFromClass: 'hidden', enterActiveClass: 'animate-scalein', leaveToClass: 'hidden', leaveActiveClass: 'animate-fadeout', hideOnOutsideClick: true }"
+                        v-styleclass="{ selector: '.box2', enterFromClass: 'hidden', enterActiveClass: 'animate-slidedown',  leaveActiveClass: 'animate-slideup', leaveToClass: 'hidden', hideOnOutsideClick: true }"
                         type="button"
                         class="p-link layout-topbar-button layout-topbar-button-highlight"
                     >
                         <i class="pi pi-palette"></i>
                     </button>
-                    <AppConfigurator />
+                    <AppConfigurator class="box2 animate-duration-500 box2 overflow-hidden"  />
                 </div>
             </div>
 
-            <button
+<!--             <button
                 class="p-link layout-topbar-menu-button layout-topbar-button"
                 v-styleclass="{ selector: '@next', enterFromClass: 'hidden', enterActiveClass: 'animate-scalein', leaveToClass: 'hidden', leaveActiveClass: 'animate-fadeout', hideOnOutsideClick: true }"
             >
                 <i class="pi pi-ellipsis-v"></i>
             </button>
-
+ -->
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
                     <button type="button" class="p-link layout-topbar-button">

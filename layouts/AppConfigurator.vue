@@ -227,7 +227,7 @@ function getSurfaceOutlineColor(surfaceName) {
 
 <template>
     <div
-        class="config-panel absolute mt-2 right-0 w-19rem p-4 border-1 surface-border border-round origin-top shadow-1"
+        class="config-panel hidden absolute mt-2 right-0 w-19rem p-4 border-1 surface-border border-round origin-top shadow-1"
     >
 <!-- class="config-panel hidden absolute top-3 right-0 w-16rem p-4 bg-surface-0 dark:bg-surface-900 border-1 border-surface border-round origin-top shadow-2"
 -->

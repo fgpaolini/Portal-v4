@@ -72,11 +72,11 @@ function searchCountry(event) {
 </script>
 
 <template>
-    <Fluid class="flex flex-col md:flex-row gap-8">
+    <Fluid class="flex flex-column md:flex-row gap-8">
         <div class="md:w-1/2">
-            <div class="card flex flex-col gap-4">
+            <div class="card flex flex-column gap-4">
                 <div class="font-semibold text-xl">InputText</div>
-                <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex flex-column md:flex-row gap-4">
                     <InputText type="text" placeholder="Default" />
                     <InputText type="text" placeholder="Disabled" :disabled="true" />
                     <InputText type="text" placeholder="Invalid" invalid />
@@ -111,17 +111,17 @@ function searchCountry(event) {
                 <InputNumber v-model="inputNumberValue" showButtons mode="decimal"></InputNumber>
             </div>
 
-            <div class="card flex flex-col gap-4">
+            <div class="card flex flex-column gap-4">
                 <div class="font-semibold text-xl">Slider</div>
                 <InputText v-model.number="sliderValue" />
                 <Slider v-model="sliderValue" />
 
                 <div class="flex flex-row mt-6">
-                    <div class="flex flex-col gap-4 w-1/2">
+                    <div class="flex flex-column gap-4 w-1/2">
                         <div class="font-semibold text-xl">Rating</div>
                         <Rating v-model="ratingValue" />
                     </div>
-                    <div class="flex flex-col gap-4 w-1/2">
+                    <div class="flex flex-column gap-4 w-1/2">
                         <div class="font-semibold text-xl">ColorPicker</div>
                         <ColorPicker style="width: 2rem" v-model="colorValue" />
                     </div>
@@ -132,9 +132,9 @@ function searchCountry(event) {
             </div>
         </div>
         <div class="md:w-1/2">
-            <div class="card flex flex-col gap-4">
+            <div class="card flex flex-column gap-4">
                 <div class="font-semibold text-xl">RadioButton</div>
-                <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex flex-column md:flex-row gap-4">
                     <div class="flex items-center">
                         <RadioButton id="option1" name="option" value="Chicago" v-model="radioValue" />
                         <label for="option1" class="leading-none ml-2">Chicago</label>
@@ -150,7 +150,7 @@ function searchCountry(event) {
                 </div>
 
                 <div class="font-semibold text-xl">Checkbox</div>
-                <div class="flex flex-col md:flex-row gap-4">
+                <div class="flex flex-column md:flex-row gap-4">
                     <div class="flex items-center">
                         <Checkbox id="checkOption1" name="option" value="Chicago" v-model="checkboxValue" />
                         <label for="checkOption1" class="ml-2">Chicago</label>
@@ -169,7 +169,7 @@ function searchCountry(event) {
                 <ToggleSwitch v-model="switchValue" />
             </div>
 
-            <div class="card flex flex-col gap-4">
+            <div class="card flex flex-column gap-4">
                 <div class="font-semibold text-xl">Listbox</div>
                 <Listbox v-model="listboxValue" :options="listboxValues" optionLabel="name" :filter="true" />
 
@@ -199,7 +199,7 @@ function searchCountry(event) {
                 <TreeSelect v-model="selectedNode" :options="treeSelectNodes" placeholder="Select Item"></TreeSelect>
             </div>
 
-            <div class="card flex flex-col gap-4">
+            <div class="card flex flex-column gap-4">
                 <div class="font-semibold text-xl">ToggleButton</div>
                 <ToggleButton v-model="toggleValue" onLabel="Yes" offLabel="No" :style="{ width: '10em' }" />
 
@@ -210,9 +210,9 @@ function searchCountry(event) {
     </Fluid>
 
     <Fluid class="flex mt-8">
-        <div class="card flex flex-col gap-4 w-full">
+        <div class="card flex flex-column gap-4 w-full">
             <div class="font-semibold text-xl">InputGroup</div>
-            <div class="flex flex-col md:flex-row gap-4">
+            <div class="flex flex-column md:flex-row gap-4">
                 <InputGroup>
                     <InputGroupAddon>
                         <i class="pi pi-user"></i>
@@ -231,7 +231,7 @@ function searchCountry(event) {
                     <InputGroupAddon>.00</InputGroupAddon>
                 </InputGroup>
             </div>
-            <div class="flex flex-col md:flex-row gap-4">
+            <div class="flex flex-column md:flex-row gap-4">
                 <InputGroup>
                     <Button label="Search" />
                     <InputText placeholder="Keyword" />
