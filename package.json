@@ -7,21 +7,37 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@noction/vue-draggable-grid": "^1.11.0",
+    "@pinia/nuxt": "^0.5.2",
     "@primevue/auto-import-resolver": "^4.2.1",
     "@primevue/themes": "^4.2.1",
     "chart.js": "^3.3.2",
+    "html2canvas": "^1.4.1",
+    "jwt-decode": "^4.0.0",
     "nuxt": "^3.14.0",
+    "nuxt-authorization": "^0.0.4",
     "nuxt-primevue": "^4.0.0-beta.4",
+    "pinia": "^2.2.0",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
     "primevue": "^4.2.1",
-    "vue": "^3.5.12"
+    "vee-validate": "^4.13.2",
+    "vue": "^3.5.12",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@primevue/nuxt-module": "^4.2.1",
-    "sass": "^1.77.8"
+    "@sidebase/nuxt-auth": "^0.9.4",
+    "@vueuse/nuxt": "^11.2.0",
+    "cross-env": "^7.0.3",
+    "nuxt-icon": "^0.6.10",
+    "nuxt-typed-router": "^3.6.5",
+    "sass": "^1.77.8",
+    "typescript": "^5.5.3",
+    "vue-tsc": "^2.0.29"
   }
 }
