@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import { useLayout } from '@/composables/layout';
-import AppConfigurator from './AppConfigurator.vue';
-const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
-</script>
-
 <template>
     <div class="layout-topbar">
         <button class="p-link layout-menu-button layout-topbar-button" @click="onMenuToggle()">
@@ -64,8 +58,28 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
                         <i class="pi pi-user"></i>
                         <span>Profile</span>
                     </button>
+                    <button @click="onSettingsClick()" v-tooltip.bottom="'Opciones'" class="p-link layout-topbar-button">
+                        <i class="pi pi-cog"></i>
+                        <span>Opciones</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { useLayout } from '../composables/layout';
+import AppConfigurator from './AppConfigurator.vue';
+const { onMenuToggle, toggleDarkMode, isDarkTheme, layoutState } = useLayout();
+
+const topbarMenuActive = ref(false);
+
+const onSettingsClick = () => {
+    topbarMenuActive.value = false;
+    //router.push('/');
+    layoutState.configSidebarVisible.value = !layoutState.configSidebarVisible
+};
+
+
+</script>

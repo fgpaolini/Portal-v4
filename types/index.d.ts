@@ -20,7 +20,7 @@ declare global {
 		menuMode: string;
 		theme: string;
 		scale: number;
-		//activeMenuItem: string;
+		activeMenuItem: string;
 		//
 		preset: string;
 		primary: string;
@@ -35,7 +35,7 @@ declare global {
 		configSidebarVisible: boolean;
 		staticMenuMobileActive: boolean;
 		menuHoverActive: boolean;
-		activeMenuItem: string | null;
+		//activeMenuItem: string | null;
 	}
 
 	type Client = {

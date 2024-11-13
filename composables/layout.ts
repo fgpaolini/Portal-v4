@@ -6,7 +6,7 @@ const layoutConfig : LayoutConfig = reactive({
     inputStyle: 'outlined',
     theme: '',
     scale: 14,
-    //activeMenuItem: '', 
+    activeMenuItem: '', 
     //
     preset: 'Aura',
     primary: 'emerald',
@@ -21,10 +21,35 @@ const layoutState : LayoutState = reactive({
     configSidebarVisible: false,
     staticMenuMobileActive: false,
     menuHoverActive: false,
-    activeMenuItem: null
+    //activeMenuItem: null
 });
 
 export function useLayout() {
+
+
+    watch(
+        layoutConfig, 
+        () => {
+            const newLayout: LayoutConfig = {
+                ripple: layoutConfig.ripple,
+                darkTheme: layoutConfig.darkTheme,
+                inputStyle: layoutConfig.inputStyle,
+                menuMode: layoutConfig.menuMode,
+                theme: layoutConfig.theme,
+                scale: layoutConfig.scale,
+                activeMenuItem: layoutConfig.activeMenuItem,
+                preset: layoutConfig.preset,
+                primary: layoutConfig.primary,
+                surface: layoutConfig.surface,
+            };
+            currentLayout.value = newLayout;
+            localStorage.setItem('layoutConfig', JSON.stringify(newLayout));
+        }, 
+        { deep: true }
+    );
+    const currentLayout = ref({ ...layoutConfig})
+
+
     const setPrimary = (value: string) => {
         layoutConfig.primary = value;
     };
@@ -38,7 +63,7 @@ export function useLayout() {
     };
 
     const setActiveMenuItem = (item: any) => {
-        layoutState.activeMenuItem = item.value || item;
+        layoutConfig.activeMenuItem = item.value || item;
     };
 
     const setMenuMode = (mode: string) => {
@@ -86,5 +111,27 @@ export function useLayout() {
 
     const getSurface = computed(() => layoutConfig.surface);
 
-    return { layoutConfig: readonly(layoutConfig), layoutState: readonly(layoutState), onMenuToggle, isSidebarActive, isDarkTheme, getPrimary, getSurface, setActiveMenuItem, toggleDarkMode, setPrimary, setSurface, setPreset, resetMenu, setMenuMode };
+    const getLayoutConfig = () => {
+        const layoutFormStorage = localStorage.getItem('layoutConfig');
+        return JSON.parse(layoutFormStorage!)
+    }
+
+    return { 
+        layoutConfig: toRefs(layoutConfig),
+        layoutState: toRefs(layoutState),
+        onMenuToggle, 
+        isSidebarActive, 
+        isDarkTheme, 
+        getPrimary, 
+        getSurface, 
+        setActiveMenuItem, 
+        toggleDarkMode, 
+        setPrimary, 
+        setSurface, 
+        setPreset, 
+        resetMenu, 
+        setMenuMode,
+        currentLayout,
+        getLayoutConfig
+    };
 }

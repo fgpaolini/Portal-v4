@@ -30,7 +30,7 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 
-const { layoutState, setActiveMenuItem, onMenuToggle } = useLayout();
+const { layoutState, layoutConfig, setActiveMenuItem, onMenuToggle } = useLayout();
 
 const props = defineProps({
     item: {
@@ -57,13 +57,17 @@ const itemKey = ref<string>('');
 onBeforeMount(() => {
     itemKey.value = props.parentItemKey ? props.parentItemKey + '-' + props.index : String(props.index);
 
-    const activeItem = layoutState.activeMenuItem;
-
+    const activeItem = layoutConfig.activeMenuItem.value;
+    //console.log(activeItem.value)
     isActiveMenu.value = activeItem === itemKey.value || activeItem ? activeItem.startsWith(itemKey.value + '-') : false;
+
+    //isActiveMenu.value = activeItem === itemKey.value || activeItem ? activeItem?.startsWith(itemKey.value + '-') : false;
+    //isActiveMenu.value = activeItem && activeItem.value === itemKey.value || (activeItem && activeItem.value?.startsWith(itemKey.value + '-')) || false;
+
 });
 
 watch(
-    () => layoutState.activeMenuItem,
+    () => layoutConfig.activeMenuItem.value,
     (newVal: any) => {
         isActiveMenu.value = newVal === itemKey.value || newVal.startsWith(itemKey.value + '-');
     }
@@ -73,16 +77,19 @@ const itemClick = (event: Event, item: MenuItem) => {
     if (item.disabled) {
         event.preventDefault();
         return;
-    }
+    }        
+    
+    const { overlayMenuActive, staticMenuMobileActive } = layoutState;
 
-    if ((item.to || item.url) && (layoutState.staticMenuMobileActive || layoutState.overlayMenuActive)) {
+
+    if ((item.to || item.url) && (staticMenuMobileActive.value || overlayMenuActive.value)) {
         onMenuToggle();
     }
-
+/* 
     if (item.command) {
         item.command({ originalEvent: event, item: item });
     }
-
+ */
     const foundItemKey = item.items ? (isActiveMenu.value ? props.parentItemKey : itemKey) : itemKey.value;
 
     setActiveMenuItem(foundItemKey);

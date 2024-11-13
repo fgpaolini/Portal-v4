@@ -21,6 +21,7 @@ function tokenHasExpired(token: Readonly<globalThis.Ref<string | null>>) {
 	if (!token.value) return true;
 
 	const decodedToken = jwtDecode(token.value);
+
 	if (decodedToken && decodedToken.exp) {		
 		const expirationTime = decodedToken.exp * 1000; // exp viene en segundos, convertir a milisegundos
 		return Date.now() >= expirationTime;

@@ -1,5 +1,64 @@
+<template>
+    <div
+        class="config-panel hidden absolute mt-2 right-0 w-19rem p-4 border-1 surface-border border-round origin-top shadow-1"
+    >
+<!-- class="config-panel hidden absolute top-3 right-0 w-16rem p-4 bg-surface-0 dark:bg-surface-900 border-1 border-surface border-round origin-top shadow-2"
+-->
+        <div class="flex flex-column gap-4">
+            <div>
+                <span class="text-sm text-muted-color font-semibold">Primary</span>
+                <div class="pt-2 flex gap-2 flex-wrap justify-content-between">
+                    <Button
+                            v-for="primaryColor of primaryColors"
+                            :key="primaryColor.name"
+                            type="button"
+                            v-tooltip.top="`${primaryColor.name}`"
+                            :title="primaryColor.name"
+                            @click="updateColors('primary', primaryColor)"
+                            class="border-none w-1 h-1 border-circle p-0 m-0 cursor-pointer"
+                            :style="[{
+                                backgroundColor: primaryColor.name === 'noir' ? 'var(--text-color)' : primaryColor.palette['500'],
+                                outlineColor: getPrimaryColor(primaryColor.name),
+                                outlineStyle: layoutConfig.primary.value === primaryColor.name ? 'solid' : 'none',
+                                outlineOffset: layoutConfig.primary.value === primaryColor.name ? '2px' : '0'
+                            }]"
+                        ></Button>
+                </div>
+            </div>
+            <div>
+                <span class="text-sm text-muted-color font-semibold">Surface</span>
+                <div class="pt-2 flex gap-2 flex-wrap justify-content-between">
+                    <Button
+                        v-for="surface of surfaces"
+                        :key="surface.name"
+                        v-tooltip.top="`${surface.name}`"
+                        type="button"
+                        :title="surface.name"
+                        @click="updateColors('surface', surface)"
+                        class="border-none w-1 h-1 border-circle p-0 m-0 cursor-pointer"
+                        :style="{
+                            backgroundColor: surface.palette['500'],
+                            outlineColor: layoutConfig.surface.value != '' ? getSurfaceOutlineColor(surface.name) : getSurfaceOutlineColor('slate'),
+                            outlineStyle: layoutConfig.surface.value === surface.name ? 'solid' : 'none',
+                            outlineOffset: layoutConfig.surface.value === surface.name ? '2px' : '0'
+                        }"
+                    ></Button>
+                </div>
+            </div>
+            <div class="flex flex-column gap-2">
+                <span class="text-sm text-muted-color font-semibold">Presets</span>
+                <SelectButton v-model="preset" @change="onPresetChange" :options="presetOptions" :allowEmpty="false" />
+            </div>
+            <div class="flex flex-column gap-2">
+                <span class="text-sm text-muted-color font-semibold">Menu Mode</span>
+                <SelectButton v-model="menuMode" @change="onMenuModeChange" :options="menuModeOptions" :allowEmpty="false" optionLabel="label" optionValue="value" />
+            </div>
+        </div>
+    </div>
+</template>
+
 <script setup lang="ts">
-import { useLayout } from '../composables/layout';
+import { useLayout } from '@/composables/layout';
 import { $t, updatePreset, updateSurfacePalette } from '@primevue/themes';
 import Aura from '@primevue/themes/aura'
 import Lara from '@primevue/themes/lara';
@@ -15,7 +74,7 @@ const presets = {
     Lara,
     Nora,
 };
-const preset = ref<string>(layoutConfig.preset);
+const preset = ref<string>(layoutConfig.preset.value);
 const presetOptions = ref(Object.keys(presets));
 
 const menuMode = ref(layoutConfig.menuMode);
@@ -87,7 +146,7 @@ const surfaces = ref([
 ]);
 
 function getPresetExt() {
-    const color = primaryColors.value.find((c) => c.name === layoutConfig.primary);
+    const color = primaryColors.value.find((c) => c.name === layoutConfig.primary.value);
 
     if (color?.name === 'noir') {
         return {
@@ -197,7 +256,7 @@ function applyTheme(type: string, color: PrimaryColor) {
 function onPresetChange() {
     setPreset(preset.value);
     const presetValue = presets[preset.value as keyof typeof presets];
-    const surfacePalette = surfaces.value.find((s) => s.name === layoutConfig.surface)?.palette;
+    const surfacePalette = surfaces.value.find((s) => s.name === layoutConfig.surface.value)?.palette;
 
     $t().preset(presetValue).preset(getPresetExt()).surfacePalette(surfacePalette).use({ useDefaultOptions: true });
 }
@@ -225,70 +284,10 @@ function getSurfaceOutlineColor(surfaceName: string) {
     //const surface = surfaceName ? surfaceName : 'slate' || (isDarkTheme ? 'zinc' : 'slate');
     const surface = surfaceName || (isDarkTheme ? 'zinc' : 'slate');
     const color = surfaces.value.find(s => s.name === surface)?.palette['300'] || 'slate';
-    console.log(surface, color);
+    //console.log(surface, color);
     return color
 }
 
 </script>
 
-
-
-<template>
-    <div
-        class="config-panel hidden absolute mt-2 right-0 w-19rem p-4 border-1 surface-border border-round origin-top shadow-1"
-    >
-<!-- class="config-panel hidden absolute top-3 right-0 w-16rem p-4 bg-surface-0 dark:bg-surface-900 border-1 border-surface border-round origin-top shadow-2"
--->
-        <div class="flex flex-column gap-4">
-            <div>
-                <span class="text-sm text-muted-color font-semibold">Primary</span>
-                <div class="pt-2 flex gap-2 flex-wrap justify-content-between">
-                    <Button
-                            v-for="primaryColor of primaryColors"
-                            :key="primaryColor.name"
-                            type="button"
-                            v-tooltip.top="`${primaryColor.name}`"
-                            :title="primaryColor.name"
-                            @click="updateColors('primary', primaryColor)"
-                            class="border-none w-1 h-1 border-circle p-0 m-0 cursor-pointer"
-                            :style="[{
-                                backgroundColor: primaryColor.name === 'noir' ? 'var(--text-color)' : primaryColor.palette['500'],
-                                outlineColor: getPrimaryColor(primaryColor.name),
-                                outlineStyle: layoutConfig.primary === primaryColor.name ? 'solid' : 'none',
-                                outlineOffset: layoutConfig.primary === primaryColor.name ? '2px' : '0'
-                            }]"
-                        ></Button>
-                </div>
-            </div>
-            <div>
-                <span class="text-sm text-muted-color font-semibold">Surface</span>
-                <div class="pt-2 flex gap-2 flex-wrap justify-content-between">
-                    <Button
-                        v-for="surface of surfaces"
-                        :key="surface.name"
-                        v-tooltip.top="`${surface.name}`"
-                        type="button"
-                        :title="surface.name"
-                        @click="updateColors('surface', surface)"
-                        class="border-none w-1 h-1 border-circle p-0 m-0 cursor-pointer"
-                        :style="{
-                            backgroundColor: surface.palette['500'],
-                            outlineColor: layoutConfig.surface != '' ? getSurfaceOutlineColor(surface.name) : getSurfaceOutlineColor('slate'),
-                            outlineStyle: layoutConfig.surface === surface.name ? 'solid' : 'none',
-                            outlineOffset: layoutConfig.surface === surface.name ? '2px' : '0'
-                        }"
-                    ></Button>
-                </div>
-            </div>
-            <div class="flex flex-column gap-2">
-                <span class="text-sm text-muted-color font-semibold">Presets</span>
-                <SelectButton v-model="preset" @change="onPresetChange" :options="presetOptions" :allowEmpty="false" />
-            </div>
-            <div class="flex flex-column gap-2">
-                <span class="text-sm text-muted-color font-semibold">Menu Mode</span>
-                <SelectButton v-model="menuMode" @change="onMenuModeChange" :options="menuModeOptions" :allowEmpty="false" optionLabel="label" optionValue="value" />
-            </div>
-        </div>
-    </div>
-</template>
 

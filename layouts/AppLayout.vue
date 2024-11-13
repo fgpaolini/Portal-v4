@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { useLayout } from '@/composables/layout';
+import { useLayout } from '../composables/layout';
 import { computed, ref, watch } from 'vue';
 import AppFooter from './AppFooter.vue';
 import AppSidebar from './AppSidebar.vue';
@@ -41,11 +41,11 @@ watch(isSidebarActive, (newVal) => {
 
 const containerClass = computed(() => {
     return {
-        'layout-overlay': layoutConfig.menuMode === 'overlay',
-        'layout-static': layoutConfig.menuMode === 'static',
-        'layout-static-inactive': layoutState.staticMenuDesktopInactive && layoutConfig.menuMode === 'static',
-        'layout-overlay-active': layoutState.overlayMenuActive,
-        'layout-mobile-active': layoutState.staticMenuMobileActive
+        'layout-overlay': layoutConfig.menuMode.value === 'overlay',
+        'layout-static': layoutConfig.menuMode.value === 'static',
+        'layout-static-inactive': layoutState.staticMenuDesktopInactive.value && layoutConfig.menuMode.value === 'static',
+        'layout-overlay-active': layoutState.overlayMenuActive.value,
+        'layout-mobile-active': layoutState.staticMenuMobileActive.value
     };
 });
 
