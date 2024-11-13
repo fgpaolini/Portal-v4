@@ -1,7 +1,6 @@
-<script setup>
-import { useLayout } from '../composables/layout';
+<script setup lang="ts">
+import { useLayout } from '@/composables/layout';
 import AppConfigurator from './AppConfigurator.vue';
-
 const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
 </script>
 
@@ -16,7 +15,7 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
         </router-link>
 
 
-        <button class="p-link layout-topbar-menu-button layout-topbar-button" @click="onTopBarMenuButton()">
+        <button class="p-link layout-topbar-menu-button layout-topbar-button" >
         <i class="pi pi-ellipsis-v"></i>
         </button>
     <slot></slot>
@@ -28,13 +27,19 @@ const { onMenuToggle, toggleDarkMode, isDarkTheme } = useLayout();
                 </button>
                 <div class="relative">
                     <button
-                        v-styleclass="{ selector: '.box2', enterFromClass: 'hidden', enterActiveClass: 'animate-slidedown',  leaveActiveClass: 'animate-slideup', leaveToClass: 'hidden', hideOnOutsideClick: true }"
+                        v-styleclass="{ 
+                            selector: '.box2', 
+                            enterFromClass: 'hidden', 
+                            enterActiveClass: 'animate-slidedown',  
+                            leaveActiveClass: 'animate-slideup', 
+                            leaveToClass: 'hidden', 
+                            hideOnOutsideClick: true }"
                         type="button"
                         class="p-link layout-topbar-button layout-topbar-button-highlight"
                     >
                         <i class="pi pi-palette"></i>
                     </button>
-                    <AppConfigurator class="box2 animate-duration-500 box2 overflow-hidden"  />
+                    <AppConfigurator class="box2 fadein transition-duration-500 overflow-hidden"  />
                 </div>
             </div>
 

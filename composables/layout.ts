@@ -1,14 +1,20 @@
 import { computed, reactive, readonly } from 'vue';
 
-const layoutConfig = reactive({
+const layoutConfig : LayoutConfig = reactive({
+    ripple: true,
+    darkTheme: false,
+    inputStyle: 'outlined',
+    theme: '',
+    scale: 14,
+    //activeMenuItem: '', 
+    //
     preset: 'Aura',
     primary: 'emerald',
     surface: null,
-    darkTheme: false,
     menuMode: 'static'
 });
 
-const layoutState = reactive({
+const layoutState : LayoutState = reactive({
     staticMenuDesktopInactive: false,
     overlayMenuActive: false,
     profileSidebarVisible: false,
@@ -19,23 +25,23 @@ const layoutState = reactive({
 });
 
 export function useLayout() {
-    const setPrimary = (value) => {
+    const setPrimary = (value: string) => {
         layoutConfig.primary = value;
     };
 
-    const setSurface = (value) => {
+    const setSurface = (value: string) => {
         layoutConfig.surface = value;
     };
 
-    const setPreset = (value) => {
+    const setPreset = (value: string) => {
         layoutConfig.preset = value;
     };
 
-    const setActiveMenuItem = (item) => {
+    const setActiveMenuItem = (item: any) => {
         layoutState.activeMenuItem = item.value || item;
     };
 
-    const setMenuMode = (mode) => {
+    const setMenuMode = (mode: string) => {
         layoutConfig.menuMode = mode;
     };
 
@@ -46,7 +52,7 @@ export function useLayout() {
             return;
         }
 
-        document.startViewTransition(() => executeDarkModeToggle(event));
+        document.startViewTransition(() => executeDarkModeToggle(/* event */));
     };
 
     const executeDarkModeToggle = () => {

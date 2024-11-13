@@ -1,11 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import { useLayout } from '../composables/layout';
 import { $t, updatePreset, updateSurfacePalette } from '@primevue/themes';
 import Aura from '@primevue/themes/aura'
 import Lara from '@primevue/themes/lara';
 import Nora from '@primevue/themes/nora';
 import Material from '@primevue/themes/material';
-import { ref } from 'vue';
+
 
 const { layoutConfig, setPrimary, setSurface, setPreset, isDarkTheme, setMenuMode } = useLayout();
 
@@ -15,7 +15,7 @@ const presets = {
     Lara,
     Nora,
 };
-const preset = ref(layoutConfig.preset);
+const preset = ref<string>(layoutConfig.preset);
 const presetOptions = ref(Object.keys(presets));
 
 const menuMode = ref(layoutConfig.menuMode);
@@ -24,7 +24,14 @@ const menuModeOptions = ref([
     { label: 'Overlay', value: 'overlay' }
 ]);
 
-const primaryColors = ref([
+
+type PrimaryColor = {
+    name: string;
+    palette: Record<string, string>;
+}
+
+
+const primaryColors = ref<PrimaryColor[]>([
     { name: 'noir', palette: {} },
     { name: 'emerald', palette: { 50: '#ecfdf5', 100: '#d1fae5', 200: '#a7f3d0', 300: '#6ee7b7', 400: '#34d399', 500: '#10b981', 600: '#059669', 700: '#047857', 800: '#065f46', 900: '#064e3b', 950: '#022c22' } },
     { name: 'green', palette: { 50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d', 950: '#052e16' } },
@@ -82,7 +89,7 @@ const surfaces = ref([
 function getPresetExt() {
     const color = primaryColors.value.find((c) => c.name === layoutConfig.primary);
 
-    if (color.name === 'noir') {
+    if (color?.name === 'noir') {
         return {
             semantic: {
                 primary: {
@@ -133,7 +140,7 @@ function getPresetExt() {
     } else {
         return {
             semantic: {
-                primary: color.palette,
+                primary: color?.palette,
                 colorScheme: {
                     light: {
                         primary: {
@@ -169,7 +176,7 @@ function getPresetExt() {
     }
 }
 
-function updateColors(type, color) {
+function updateColors(type: string, color: PrimaryColor) {
     if (type === 'primary') {
         setPrimary(color.name);
     } else if (type === 'surface') {
@@ -179,7 +186,7 @@ function updateColors(type, color) {
     applyTheme(type, color);
 }
 
-function applyTheme(type, color) {
+function applyTheme(type: string, color: PrimaryColor) {
     if (type === 'primary') {
         updatePreset(getPresetExt());
     } else if (type === 'surface') {
@@ -189,7 +196,7 @@ function applyTheme(type, color) {
 
 function onPresetChange() {
     setPreset(preset.value);
-    const presetValue = presets[preset.value];
+    const presetValue = presets[preset.value as keyof typeof presets];
     const surfacePalette = surfaces.value.find((s) => s.name === layoutConfig.surface)?.palette;
 
     $t().preset(presetValue).preset(getPresetExt()).surfacePalette(surfacePalette).use({ useDefaultOptions: true });
@@ -201,7 +208,7 @@ function onMenuModeChange() {
 
 
 // Función para obtener el color primario
-function getPrimaryColor(primaryName) {
+function getPrimaryColor(primaryName: string) {
     if (primaryName === 'noir') return 'var(--text-color)'; // Color por defecto si no hay colores disponibles
 
   const color = primaryColors.value.find(c => c.name === primaryName);
@@ -214,8 +221,9 @@ function getPrimaryColor(primaryName) {
     return surfaces.value.find(s => s.name === surface)?.palette['300'] || 'slate';
 }); */
 
-function getSurfaceOutlineColor(surfaceName) {
-    const surface = surfaceName ? surfaceName : 'slate' || (isDarkTheme ? 'zinc' : 'slate');
+function getSurfaceOutlineColor(surfaceName: string) {
+    //const surface = surfaceName ? surfaceName : 'slate' || (isDarkTheme ? 'zinc' : 'slate');
+    const surface = surfaceName || (isDarkTheme ? 'zinc' : 'slate');
     const color = surfaces.value.find(s => s.name === surface)?.palette['300'] || 'slate';
     console.log(surface, color);
     return color

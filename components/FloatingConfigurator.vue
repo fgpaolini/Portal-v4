@@ -1,13 +1,13 @@
-<script setup>
+<script setup lang="ts">
 import AppConfigurator from '@/layouts/AppConfigurator.vue';
-import { useLayout } from '../composables/layout.js';
+import { useLayout } from '@/composables/layout.js';
 
 const { toggleDarkMode, isDarkTheme } = useLayout();
 </script>
 
 <template>
     <div class="fixed flex">
-        <Button type="button" @click="toggleDarkMode" rounded :icon="{ 'pi pi-moon': isDarkTheme, 'pi pi-sun': !isDarkTheme }" severity="secondary" />
+        <Button type="button" @click="toggleDarkMode" rounded :icon="isDarkTheme ? 'pi pi-moon' : 'pi pi-sun'" severity="secondary" />
         <div class="relative">
             <Button
                 icon="pi pi-palette"
