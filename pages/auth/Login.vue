@@ -60,10 +60,10 @@
 import FloatingConfigurator from '~/components/FloatingConfigurator.vue';
 import { TipoSubdomain, useAuth } from '#imports'
 // https://auth.sidebase.io/guide/local/quick-start
-/* definePageMeta({
+definePageMeta({
     layout: 'auth',
     auth: false
-}) */
+})
 
 
 const { layoutConfig } = useLayout();

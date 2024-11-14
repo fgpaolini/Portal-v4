@@ -47,14 +47,6 @@
             <div class="layout-topbar-menu hidden lg:block">
                 <div class="layout-topbar-menu-content">
                     <button type="button" class="p-link layout-topbar-button">
-                        <i class="pi pi-calendar"></i>
-                        <span>Calendar</span>
-                    </button>
-                    <button type="button" class="p-link layout-topbar-button">
-                        <i class="pi pi-inbox"></i>
-                        <span>Messages</span>
-                    </button>
-                    <button type="button" class="p-link layout-topbar-button">
                         <i class="pi pi-user"></i>
                         <span>Profile</span>
                     </button>
@@ -78,7 +70,7 @@ const topbarMenuActive = ref(false);
 const onSettingsClick = () => {
     topbarMenuActive.value = false;
     //router.push('/');
-    layoutState.configSidebarVisible.value = !layoutState.configSidebarVisible
+    layoutState.configSidebarVisible.value = !layoutState.configSidebarVisible.value
 };
 
 

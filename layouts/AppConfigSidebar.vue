@@ -1,6 +1,6 @@
 <template>
 
-    <Sidebar v-model:visible="layoutState.configSidebarVisible.value" position="right" class="layout-config-sidebar w-26rem" pt:closeButton="ml-auto mr-4">
+    <Drawer v-model:visible="layoutState.configSidebarVisible.value" position="right" class="layout-config-sidebar w-26rem" pt:closeButton="ml-auto mr-4">
         <Toast/>
         <div class="p-2">  
             <section class="pb-4 flex align-items-center justify-content-between border-bottom-1 surface-border">
@@ -416,11 +416,12 @@
                 </div>
             </section>
         </div>
-    </Sidebar>
+    </Drawer>
 </template>
 
 <script setup lang="ts">
 import { useStorage } from '@vueuse/core'
+import AppLang from './AppLang.vue';
 //import ThemeButton from '~/components/UI/ThemeButton.vue';
 const { $toast, $api } = useNuxtApp()
 

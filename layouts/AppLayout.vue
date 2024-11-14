@@ -12,7 +12,7 @@
             </div>
             <app-footer></app-footer>
         </div>
-        <!-- <AppConfigurator></AppConfigurator> -->
+        <AppConfigSidebar></AppConfigSidebar>
         <Toast/>
         <div class="layout-mask"></div>
     </div>  
@@ -26,6 +26,7 @@ import AppFooter from './AppFooter.vue';
 import AppSidebar from './AppSidebar.vue';
 import AppTopbar from './AppTopbar.vue';
 import AppConfigurator from './AppConfigurator.vue';
+import AppConfigSidebar from './AppConfigSidebar.vue';
 
 const { layoutConfig, layoutState, isSidebarActive, resetMenu } = useLayout();
 
